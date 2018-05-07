@@ -72,7 +72,7 @@ class Spider:
         mail_host = "smtp.sina.com"  # 设置服务器
         mail_user = "pywechat@sina.com"  # 用户名
         mail_pass = "zywechat"  # 口令
-        message = MIMEText("url:<a href='{}'>{}</a> \r\nFrom Joy's Python".format(url, url), 'plain', 'utf-8')
+        message = MIMEText("地址:{} \r\n\r\n\r\nFrom Joy's Python".format(url), 'plain', 'utf-8')
         message['From'] = Header(sender)
         message['To'] = Header(receivers[0], 'utf-8')
         message['Subject'] = Header(title, 'utf-8')
