@@ -45,6 +45,9 @@ class Spider:
         db = PickleShareDB('data')
         history_list = db.get("history_list", [])
         smtpObj = self.get_smtp()
+        if smtpObj:
+            logger.error("smtp error")
+            exit(-1)
         for row in tables_a:
             try:
                 title = row["title"]
@@ -86,7 +89,7 @@ class Spider:
             mail_host = accounts["smtp"]  # 设置服务器
             mail_user = accounts["name"]  # 用户名
             mail_pass = accounts["pwd"]  # 口令
-            smtpObj = smtplib.SMTP_SSL(mail_host)
+            smtpObj = smtplib.SMTP_SSL(mail_host, accounts["port"])
             try:
                 ans = smtpObj.login(mail_user, mail_pass)
                 if ans[0] == 235 or ans[0] == 503:
@@ -104,5 +107,5 @@ class Spider:
 
 
 if __name__ == "__main__":
-    # Spider().get_smtp(debug=True)
-    Spider().get()
+    Spider().get_smtp(debug=True)
+    # Spider().get()
