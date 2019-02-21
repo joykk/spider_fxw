@@ -45,7 +45,7 @@ class Spider:
         db = PickleShareDB('data')
         history_list = db.get("history_list", [])
         smtpObj = self.get_smtp()
-        if smtpObj:
+        if not smtpObj:
             logger.error("smtp error")
             exit(-1)
         for row in tables_a:
@@ -75,8 +75,7 @@ class Spider:
         message['To'] = Header(receivers[0], 'utf-8')
         message['Subject'] = Header(title, 'utf-8')
         try:
-            ans = smtpObj.sendmail(sender, receivers, message.as_string())
-            logger.info(str(ans))
+            smtpObj.sendmail(sender, receivers, message.as_string())
             return True
         except Exception as e:
             logger.error(str(e))
@@ -107,5 +106,5 @@ class Spider:
 
 
 if __name__ == "__main__":
-    Spider().get_smtp(debug=True)
-    # Spider().get()
+    # Spider().get_smtp(debug=True)
+    Spider().get()
