@@ -65,7 +65,7 @@ class Spider:
 
     def send_email(self, smtpObj, title, url):
         sender = 'pywechat@sina.com'
-        receivers = ['zzyyshi@qq.com', 'pywechat@sina.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+        receivers = ['575637380@qq.com', '3025379182@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
         # 第三方 SMTP 服务
         message = MIMEText("地址:{} \r\n\r\n\r\nFrom Joy's Python".format(url), 'plain', 'utf-8')
         message['From'] = Header(sender)
